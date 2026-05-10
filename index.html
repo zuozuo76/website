@@ -1052,6 +1052,137 @@ body.dark-mode .project-tags span {
   color: #DDE7FF !important;
   border: 1px solid rgba(108, 146, 255, 0.38) !important;
 }
+  /* ===== Restore Light Main Background ===== */
+/* Keep hero/header dark, make main page white/light again */
+
+body {
+  background: #ffffff !important;
+  color: #1E293B !important;
+}
+
+/* Main content area */
+main {
+  background: #ffffff !important;
+}
+
+/* Big sections/cards */
+section {
+  background: #ffffff !important;
+  color: #1E293B !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Inner cards */
+.card,
+.project-card,
+.cert-card,
+.skill-group,
+.timeline-box {
+  background: #F9FAFB !important;
+  color: #1E293B !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+/* Text colors */
+h2,
+h3,
+p,
+li {
+  color: #1E293B !important;
+}
+
+.subtitle,
+.date,
+footer {
+  color: #6B7280 !important;
+}
+
+/* Keep your accent color as the dark blue you wanted */
+:root {
+  --accent-deep-blue: #131927;
+  --accent-deep-blue-soft: rgba(19, 25, 39, 0.14);
+}
+
+/* Section title left bar */
+h2 {
+  border-left-color: var(--accent-deep-blue) !important;
+}
+
+/* Timeline dots and lines */
+.education-item::before,
+.experience-item::before {
+  background: var(--accent-deep-blue) !important;
+  box-shadow: 0 0 0 5px var(--accent-deep-blue-soft) !important;
+}
+
+.education-item::after,
+.experience-item::after {
+  background: var(--accent-deep-blue-soft) !important;
+}
+
+/* Timeline cards accent */
+.timeline-box::before {
+  background: var(--accent-deep-blue) !important;
+}
+
+/* Highlight numbers */
+.highlight-number,
+.timeline-year {
+  color: var(--accent-deep-blue) !important;
+}
+
+/* Career focus block */
+.profile-highlight {
+  background: #F1F5F9 !important;
+  color: #131927 !important;
+  border-left: 5px solid var(--accent-deep-blue) !important;
+}
+
+/* Tags */
+.skill,
+.project-tags span {
+  background: rgba(19, 25, 39, 0.08) !important;
+  color: #131927 !important;
+  border: 1px solid rgba(19, 25, 39, 0.18) !important;
+}
+
+.skill:hover,
+.project-tags span:hover {
+  background: rgba(19, 25, 39, 0.14) !important;
+}
+
+/* Buttons */
+.button-link,
+#floatingResume,
+#backToTop {
+  background: #131927 !important;
+  color: white !important;
+}
+
+.button-link:hover,
+#floatingResume:hover,
+#backToTop:hover {
+  background: #1C2740 !important;
+}
+
+/* Project/course panels */
+.project-details,
+.coursework-panel {
+  background: #F9FAFB !important;
+  color: #1E293B !important;
+  border: 1px dashed #CBD5E1 !important;
+}
+
+/* Certificate cards */
+.cert-card {
+  background: linear-gradient(135deg, #F9FAFB, #FFFFFF) !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+.cert-card::after {
+  color: rgba(19, 25, 39, 0.18) !important;
+}
   </style>
 </head>
 
