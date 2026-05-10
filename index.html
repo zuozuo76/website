@@ -925,6 +925,133 @@
         display: block !important;
       }
     }
+  /* ===== Accent Color Override Only ===== */
+/* Keep light mode white cards, only change accent colors */
+
+:root {
+  --accent-deep-blue: #131927;
+  --accent-deep-blue-soft: rgba(19, 25, 39, 0.14);
+}
+
+/* Section title left bar */
+h2 {
+  border-left-color: var(--accent-deep-blue) !important;
+}
+
+/* Timeline / experience / education dots */
+.education-item::before,
+.experience-item::before {
+  background: var(--accent-deep-blue) !important;
+  box-shadow: 0 0 0 5px var(--accent-deep-blue-soft) !important;
+}
+
+/* Timeline / experience / education vertical lines */
+.education-item::after,
+.experience-item::after {
+  background: var(--accent-deep-blue-soft) !important;
+}
+
+/* Timeline overview left accent bar */
+.timeline-box::before {
+  background: var(--accent-deep-blue) !important;
+}
+
+/* Highlight numbers, like Top 3/120 */
+.highlight-number,
+.timeline-year {
+  color: var(--accent-deep-blue) !important;
+}
+
+/* Career Focus left accent */
+.profile-highlight {
+  border-left-color: var(--accent-deep-blue) !important;
+}
+
+/* Progress bar */
+#progress-bar {
+  background: var(--accent-deep-blue) !important;
+}
+
+/* Hover shadow uses the same deep blue family */
+section:hover,
+.card:hover,
+.project-card:hover,
+.cert-card:hover,
+.skill-group:hover {
+  box-shadow: 0 14px 34px rgba(19, 25, 39, 0.12) !important;
+}
+
+/* Buttons stay dark in light mode */
+.button-link,
+#floatingResume,
+#backToTop {
+  background: var(--accent-deep-blue) !important;
+  color: white !important;
+}
+
+.button-link:hover,
+#floatingResume:hover,
+#backToTop:hover {
+  background: #1C2740 !important;
+}
+
+/* Tags use a softer version of the same color */
+.skill,
+.project-tags span {
+  background: rgba(19, 25, 39, 0.08) !important;
+  color: var(--accent-deep-blue) !important;
+  border: 1px solid rgba(19, 25, 39, 0.18) !important;
+}
+
+.skill:hover,
+.project-tags span:hover {
+  background: rgba(19, 25, 39, 0.14) !important;
+}
+
+/* Dark mode keeps readable blue accents instead of invisible navy */
+body.dark-mode {
+  --accent-deep-blue: #6C92FF;
+  --accent-deep-blue-soft: rgba(108, 146, 255, 0.18);
+}
+
+body.dark-mode h2 {
+  border-left-color: var(--accent-deep-blue) !important;
+}
+
+body.dark-mode .education-item::before,
+body.dark-mode .experience-item::before {
+  background: var(--accent-deep-blue) !important;
+  box-shadow: 0 0 0 5px var(--accent-deep-blue-soft) !important;
+}
+
+body.dark-mode .education-item::after,
+body.dark-mode .experience-item::after {
+  background: var(--accent-deep-blue-soft) !important;
+}
+
+body.dark-mode .timeline-box::before {
+  background: var(--accent-deep-blue) !important;
+}
+
+body.dark-mode .highlight-number,
+body.dark-mode .timeline-year {
+  color: var(--accent-deep-blue) !important;
+}
+
+body.dark-mode .profile-highlight {
+  border-left-color: var(--accent-deep-blue) !important;
+}
+
+body.dark-mode #progress-bar {
+  background: var(--accent-deep-blue) !important;
+}
+
+body.dark-mode .skill,
+body.dark-mode .project-tags span {
+  background: rgba(108, 146, 255, 0.16) !important;
+  color: #DDE7FF !important;
+  border: 1px solid rgba(108, 146, 255, 0.38) !important;
+}
   </style>
 </head>
 
