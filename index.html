@@ -6,6 +6,17 @@
 
   <title>Yawen Zuo | Statistics & Risk Management</title>
 
+  <meta name="description" content="Personal website of Yawen Zuo, a Statistics student focused on quantitative finance, financial risk analysis, and data analytics." />
+  <meta name="author" content="Yawen Zuo" />
+  <meta name="keywords" content="Yawen Zuo, Statistics, Quantitative Finance, Risk Management, Financial Risk Analysis, Data Analytics, University of Toronto, The University of Hong Kong" />
+
+  <meta property="og:title" content="Yawen Zuo | Statistics & Risk Management" />
+  <meta property="og:description" content="Statistics student focused on quantitative finance, financial risk analysis, and data analytics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="profile.jpg" />
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+
   <style>
     :root {
       --primary: #2563eb;
@@ -59,24 +70,37 @@
       text-decoration: underline;
     }
 
-    body.language-en .lang-zh {
-      display: none !important;
+    .lang-en,
+    .lang-zh {
+      display: none;
     }
 
-    body.language-zh .lang-en {
-      display: none !important;
+    body.language-en .lang-en {
+      display: block;
+    }
+
+    body.language-zh .lang-zh {
+      display: block;
     }
 
     body.language-en .nav-links.lang-en,
     body.language-zh .nav-links.lang-zh,
     body.language-en .hero-tags.lang-en,
-    body.language-zh .hero-tags.lang-zh {
+    body.language-zh .hero-tags.lang-zh,
+    body.language-en .contact-actions.lang-en,
+    body.language-zh .contact-actions.lang-zh {
       display: flex;
     }
 
-    body.language-zh .lang-zh,
-    body.language-en .lang-en {
-      display: block;
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: var(--primary);
+      z-index: 9999;
+      transition: width 0.1s ease;
     }
 
     .navbar {
@@ -100,7 +124,7 @@
     }
 
     .nav-links {
-      gap: 22px;
+      gap: 20px;
       align-items: center;
     }
 
@@ -122,7 +146,7 @@
         radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 36%),
         linear-gradient(135deg, var(--dark), var(--dark-soft));
       color: white;
-      padding: 96px 24px 86px;
+      padding: 104px 24px 90px;
       text-align: center;
       overflow: hidden;
     }
@@ -277,9 +301,21 @@
     }
 
     main {
+      position: relative;
       max-width: 1180px;
       margin: 42px auto;
       padding: 0 24px;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.08), transparent 25%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     section {
@@ -420,7 +456,9 @@
       padding-top: 3px;
     }
 
-    .card {
+    .card,
+    .project-card,
+    .cert-card {
       background: var(--soft-card);
       padding: 24px;
       border-radius: 16px;
@@ -428,15 +466,45 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .card:hover {
+    .card:hover,
+    .project-card:hover,
+    .cert-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+    }
+
+    .cert-card {
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border: 1px solid #dbeafe;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark-mode .cert-card {
+      background: linear-gradient(135deg, #172554, #111827);
+      border-color: #1d4ed8;
+    }
+
+    .cert-card::after {
+      content: "✓";
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 38px;
+      color: rgba(37, 99, 235, 0.2);
+      font-weight: bold;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
     .skills {
@@ -478,10 +546,38 @@
     }
 
     .contact-actions {
-      display: flex;
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 16px;
+    }
+
+    #backToTop {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #backToTop:hover {
+      transform: translateY(-3px);
     }
 
     footer {
@@ -521,7 +617,7 @@
       }
 
       header {
-        padding: 104px 20px 64px;
+        padding: 112px 20px 64px;
       }
 
       .top-controls {
@@ -595,10 +691,37 @@
         gap: 8px;
       }
     }
+
+    @media print {
+      .navbar,
+      .top-controls,
+      #backToTop,
+      #progress-bar {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
   </style>
 </head>
 
 <body class="language-en">
+  <div id="progress-bar"></div>
+
   <nav class="navbar">
     <div class="nav-name">
       <span class="lang-en">Yawen Zuo</span>
@@ -607,6 +730,7 @@
 
     <div class="nav-links lang-en">
       <a href="#about">About</a>
+      <a href="#current">Currently</a>
       <a href="#strengths">Strengths</a>
       <a href="#education">Education</a>
       <a href="#experience">Experience</a>
@@ -617,6 +741,7 @@
 
     <div class="nav-links lang-zh">
       <a href="#about">关于我</a>
+      <a href="#current">目前状态</a>
       <a href="#strengths">核心优势</a>
       <a href="#education">教育经历</a>
       <a href="#experience">实习经历</a>
@@ -634,7 +759,7 @@
     </div>
 
     <div class="hero-content lang-en">
-      <img class="profile-photo" src="profile.jpg" alt="Yawen Zuo profile photo" />
+      <img class="profile-photo" src="profile.jpg" alt="Professional portrait of Yawen Zuo" />
 
       <h1>Yawen Zuo</h1>
       <p>Statistics | Financial Risk Analysis | Data Analytics</p>
@@ -652,12 +777,12 @@
 
       <div class="buttons">
         <a class="button" href="mailto:yawen_zuo76@163.com">Contact Me</a>
-        <a class="button secondary" href="resume_en.pdf" target="_blank">View Resume</a>
+        <a class="button secondary" href="resume_en.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
       </div>
     </div>
 
     <div class="hero-content lang-zh">
-      <img class="profile-photo" src="profile.jpg" alt="左雅文头像" />
+      <img class="profile-photo" src="profile.jpg" alt="左雅文职业头像" />
 
       <h1>左雅文</h1>
       <p>统计学 | 金融风险分析 | 数据分析</p>
@@ -675,7 +800,7 @@
 
       <div class="buttons">
         <a class="button" href="mailto:yawen_zuo76@163.com">联系我</a>
-        <a class="button secondary" href="resume_zh.pdf" target="_blank">查看简历</a>
+        <a class="button secondary" href="resume_zh.pdf" target="_blank" rel="noopener noreferrer">查看简历</a>
       </div>
     </div>
   </header>
@@ -726,6 +851,50 @@
 
         <div class="profile-highlight">
           职业方向：量化金融 · 金融风险分析 · 数据分析
+        </div>
+      </div>
+    </section>
+
+    <section id="current">
+      <div class="lang-en">
+        <h2>📍 Currently</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Studying</h3>
+            <p>Completing my Statistics degree at the University of Toronto.</p>
+          </div>
+
+          <div class="card">
+            <h3>Next Step</h3>
+            <p>Incoming Master of Statistics student at The University of Hong Kong.</p>
+          </div>
+
+          <div class="card">
+            <h3>Career Focus</h3>
+            <p>Preparing for opportunities in quantitative finance and financial risk analysis.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lang-zh">
+        <h2>📍 目前状态</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>当前学习</h3>
+            <p>正在完成多伦多大学统计方向本科学位。</p>
+          </div>
+
+          <div class="card">
+            <h3>下一阶段</h3>
+            <p>即将入读香港大学统计学硕士项目。</p>
+          </div>
+
+          <div class="card">
+            <h3>职业方向</h3>
+            <p>关注量化金融和金融风险分析相关机会。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -999,103 +1168,77 @@
 
     <section id="projects">
       <div class="lang-en">
-        <h2>📊 Project Experience</h2>
+        <h2>📊 Featured Projects</h2>
 
-        <div class="project-item">
-          <div class="project-header">
-            <div>
-              <h3>Machine Learning Course Competition</h3>
-              <div class="subtitle">University of Toronto</div>
+        <div class="project-grid">
+          <div class="project-card">
+            <h3>Machine Learning Course Competition</h3>
+            <div class="subtitle">University of Toronto · Nov 2024 - Dec 2024</div>
+            <p>
+              Built an ensemble Random Forest model after exploratory data analysis, feature standardization,
+              and LASSO-based feature selection, achieving a top 9/90 ranking.
+            </p>
+
+            <div class="project-tags">
+              <span>Machine Learning</span>
+              <span>Random Forest</span>
+              <span>LASSO</span>
+              <span>EDA</span>
             </div>
-            <div class="date">Nov 2024 - Dec 2024</div>
           </div>
 
-          <ul>
-            <li>Conducted exploratory data analysis on a high-dimensional dataset.</li>
-            <li>Applied log transformation and feature standardization to improve model performance.</li>
-            <li>Used Bagging and LASSO regression with cross-validation for feature selection and interpretation.</li>
-            <li>Built an ensemble Random Forest model and achieved a top 9/90 ranking in the competition.</li>
-          </ul>
+          <div class="project-card">
+            <h3>Business Case Project Member</h3>
+            <div class="subtitle">Impact Origin · Oct 2025 - Nov 2025</div>
+            <p>
+              Conducted industry and business analysis on the technology sector, evaluated North American
+              companies, and participated in client-facing strategy discussions.
+            </p>
 
-          <div class="project-tags">
-            <span>Machine Learning</span>
-            <span>Random Forest</span>
-            <span>LASSO</span>
-            <span>EDA</span>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-header">
-            <div>
-              <h3>Business Case Project Member</h3>
-              <div class="subtitle">Impact Origin, Workplace Education Program · Toronto, Canada</div>
+            <div class="project-tags">
+              <span>Business Analysis</span>
+              <span>Strategy</span>
+              <span>Financial Analysis</span>
+              <span>Presentation</span>
             </div>
-            <div class="date">Oct 2025 - Nov 2025</div>
-          </div>
-
-          <ul>
-            <li>Conducted weekly industry and business analyses on the technology sector, focusing on economic trends, financial performance, and consumer behavior.</li>
-            <li>Completed case projects on North American companies, evaluating operations, financials, and marketing strategies.</li>
-            <li>Participated in client-facing strategy discussions and delivered a final business case presentation.</li>
-          </ul>
-
-          <div class="project-tags">
-            <span>Business Analysis</span>
-            <span>Strategy</span>
-            <span>Financial Analysis</span>
-            <span>Presentation</span>
           </div>
         </div>
       </div>
 
       <div class="lang-zh">
-        <h2>📊 项目经历</h2>
+        <h2>📊 重点项目</h2>
 
-        <div class="project-item">
-          <div class="project-header">
-            <div>
-              <h3>机器学习课程竞赛</h3>
-              <div class="subtitle">多伦多大学</div>
+        <div class="project-grid">
+          <div class="project-card">
+            <h3>机器学习课程竞赛</h3>
+            <div class="subtitle">多伦多大学 · 2024年11月 - 2024年12月</div>
+            <p>
+              对高维数据集进行探索性数据分析、特征标准化和 LASSO 特征选择，
+              构建集成随机森林模型，并在课程竞赛中取得前 9/90 名成绩。
+            </p>
+
+            <div class="project-tags">
+              <span>机器学习</span>
+              <span>随机森林</span>
+              <span>LASSO</span>
+              <span>探索性数据分析</span>
             </div>
-            <div class="date">2024年11月 - 2024年12月</div>
           </div>
 
-          <ul>
-            <li>对高维数据集进行探索性数据分析。</li>
-            <li>对目标变量进行对数变换，并对特征进行标准化以提升模型表现。</li>
-            <li>使用 Bagging 和 LASSO 回归结合交叉验证进行特征选择和模型解释。</li>
-            <li>构建集成随机森林模型，并在课程竞赛中取得前 9/90 名成绩。</li>
-          </ul>
+          <div class="project-card">
+            <h3>商业案例项目成员</h3>
+            <div class="subtitle">Impact Origin · 2025年10月 - 2025年11月</div>
+            <p>
+              针对科技行业进行商业分析，研究经济趋势、财务表现和消费者行为，
+              并参与客户导向的战略讨论和最终商业案例展示。
+            </p>
 
-          <div class="project-tags">
-            <span>机器学习</span>
-            <span>随机森林</span>
-            <span>LASSO</span>
-            <span>探索性数据分析</span>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-header">
-            <div>
-              <h3>商业案例项目成员</h3>
-              <div class="subtitle">Impact Origin, Workplace Education Program · 加拿大多伦多</div>
+            <div class="project-tags">
+              <span>商业分析</span>
+              <span>战略分析</span>
+              <span>财务分析</span>
+              <span>案例展示</span>
             </div>
-            <div class="date">2025年10月 - 2025年11月</div>
-          </div>
-
-          <ul>
-            <li>针对科技行业进行每周行业与商业分析，研究经济趋势、财务表现和消费者行为。</li>
-            <li>完成北美公司案例项目，从运营、财务和市场营销角度进行分析。</li>
-            <li>参与客户导向的战略讨论，并完成最终商业案例展示。</li>
-          </ul>
-
-          <div class="project-tags">
-            <span>商业分析</span>
-            <span>战略分析</span>
-            <span>财务分析</span>
-            <span>案例展示</span>
           </div>
         </div>
       </div>
@@ -1150,22 +1293,22 @@
         <h2>📜 Certifications</h2>
 
         <div class="grid">
-          <div class="card">
+          <div class="cert-card">
             <h3>Tableau Desktop Specialist</h3>
             <p>Issued Jan 2025</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>SQL for Data Science</h3>
             <p>Issued Jan 2025</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>SAS Base Program</h3>
             <p>Issued Jan 2025</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>MATLAB Basic Certification</h3>
             <p>Issued Jan 2025</p>
           </div>
@@ -1176,22 +1319,22 @@
         <h2>📜 证书</h2>
 
         <div class="grid">
-          <div class="card">
+          <div class="cert-card">
             <h3>Tableau Desktop Specialist</h3>
             <p>2025年1月获得</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>SQL for Data Science</h3>
             <p>2025年1月获得</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>SAS Base Program</h3>
             <p>2025年1月获得</p>
           </div>
 
-          <div class="card">
+          <div class="cert-card">
             <h3>MATLAB Basic Certification</h3>
             <p>2025年1月获得</p>
           </div>
@@ -1206,7 +1349,7 @@
           Download my English resume for more details about my education, professional experience,
           technical skills, and project background.
         </p>
-        <a class="button-link" href="resume_en.pdf" target="_blank">View English Resume</a>
+        <a class="button-link" href="resume_en.pdf" target="_blank" rel="noopener noreferrer">View English Resume</a>
       </div>
 
       <div class="lang-zh">
@@ -1214,7 +1357,7 @@
         <p>
           点击下方按钮查看我的中文简历，了解我的教育背景、实习经历、技能和项目经历。
         </p>
-        <a class="button-link" href="resume_zh.pdf" target="_blank">查看中文简历</a>
+        <a class="button-link" href="resume_zh.pdf" target="_blank" rel="noopener noreferrer">查看中文简历</a>
       </div>
     </section>
 
@@ -1227,9 +1370,9 @@
           financial analysis, and business intelligence.
         </p>
 
-        <div class="contact-actions">
+        <div class="contact-actions lang-en">
           <a class="button-link" href="mailto:yawen_zuo76@163.com">Email Me</a>
-          <a class="button-link" href="https://github.com/zuozuo76" target="_blank">GitHub</a>
+          <a class="button-link" href="https://github.com/zuozuo76" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
 
@@ -1240,9 +1383,9 @@
           我关注量化金融、金融风险分析、数据分析、金融分析和商业智能相关机会。
         </p>
 
-        <div class="contact-actions">
+        <div class="contact-actions lang-zh">
           <a class="button-link" href="mailto:yawen_zuo76@163.com">发送邮件</a>
-          <a class="button-link" href="https://github.com/zuozuo76" target="_blank">GitHub</a>
+          <a class="button-link" href="https://github.com/zuozuo76" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </section>
@@ -1258,7 +1401,21 @@
     </div>
   </footer>
 
+  <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
   <script>
+    function updateThemeButtonText() {
+      const themeButton = document.getElementById('theme-btn');
+      const isDark = document.body.classList.contains('dark-mode');
+      const isChinese = document.body.classList.contains('language-zh');
+
+      if (isChinese) {
+        themeButton.textContent = isDark ? '浅色模式' : '深色模式';
+      } else {
+        themeButton.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      }
+    }
+
     function setLanguage(language) {
       const englishButton = document.getElementById('btn-en');
       const chineseButton = document.getElementById('btn-zh');
@@ -1282,29 +1439,54 @@
         document.documentElement.lang = 'zh-CN';
         localStorage.setItem('siteLanguage', 'zh');
       }
+
+      updateThemeButtonText();
     }
 
     function toggleTheme() {
-      const themeButton = document.getElementById('theme-btn');
       document.body.classList.toggle('dark-mode');
 
       if (document.body.classList.contains('dark-mode')) {
-        themeButton.textContent = 'Light Mode';
         localStorage.setItem('siteTheme', 'dark');
       } else {
-        themeButton.textContent = 'Dark Mode';
         localStorage.setItem('siteTheme', 'light');
+      }
+
+      updateThemeButtonText();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function updateScrollEffects() {
+      const scrollTop = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+
+      document.getElementById('progress-bar').style.width = scrollPercent + '%';
+
+      const backToTopButton = document.getElementById('backToTop');
+      if (scrollTop > 400) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
       }
     }
 
-    const savedLanguage = localStorage.getItem('siteLanguage') || 'en';
-    setLanguage(savedLanguage);
+    window.addEventListener('scroll', updateScrollEffects);
 
     const savedTheme = localStorage.getItem('siteTheme') || 'light';
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
-      document.getElementById('theme-btn').textContent = 'Light Mode';
     }
+
+    const savedLanguage = localStorage.getItem('siteLanguage') || 'en';
+    setLanguage(savedLanguage);
+    updateScrollEffects();
   </script>
 </body>
 </html>
