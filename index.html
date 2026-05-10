@@ -14,34 +14,24 @@
   <meta property="og:description" content="Statistics student focused on quantitative finance, financial risk analysis, and data analytics." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="profile.jpg" />
-  <meta property="og:url" content="https://zuozuo76.github.io/my-website/" />
-
-  <meta name="theme-color" content="#EEF4FF" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/png" href="favicon.png" />
 
   <style>
     :root {
-      --primary: #315CFF;
-      --primary-light: #DDE7FF;
-
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
       --dark: #111827;
       --dark-soft: #1f2937;
-
-      --yawen-bg: #EEF4FF;
-      --yawen-card: #F7FAFF;
-      --yawen-card-deep: #E3ECFF;
-
-      --muted: #5F6F89;
-      --light-bg: var(--yawen-bg);
-      --card-bg: var(--yawen-card);
-      --soft-card: var(--yawen-card-deep);
-      --border: #C9D8FF;
-      --text: #1E293B;
-
-      --shadow: 0 8px 24px rgba(49, 92, 255, 0.08);
-      --shadow-hover: 0 14px 34px rgba(49, 92, 255, 0.14);
+      --muted: #6b7280;
+      --light-bg: #f6f7fb;
+      --card-bg: #ffffff;
+      --soft-card: #f9fafb;
+      --border: #e5e7eb;
+      --text: #222;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 14px 34px rgba(0, 0, 0, 0.09);
     }
 
     * {
@@ -62,20 +52,14 @@
     }
 
     body.dark-mode {
-      --yawen-bg: #0F172A;
-      --yawen-card: #111C33;
-      --yawen-card-deep: #172554;
-
-      --light-bg: var(--yawen-bg);
-      --card-bg: var(--yawen-card);
-      --soft-card: var(--yawen-card-deep);
-
-      --border: #2F4A7A;
-      --text: #EAF1FF;
-      --muted: #B8C7E6;
-
-      --shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-      --shadow-hover: 0 14px 34px rgba(49, 92, 255, 0.22);
+      --light-bg: #0f172a;
+      --card-bg: #111827;
+      --soft-card: #1f2937;
+      --border: #374151;
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+      --shadow-hover: 0 14px 34px rgba(0, 0, 0, 0.38);
     }
 
     a {
@@ -124,14 +108,14 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(20, 33, 61, 0.94);
+      background: rgba(17, 24, 39, 0.92);
       backdrop-filter: blur(12px);
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 8%;
-      box-shadow: 0 4px 18px rgba(20, 33, 61, 0.22);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
     }
 
     .nav-name {
@@ -151,7 +135,7 @@
     }
 
     .nav-links a {
-      color: #EAF1FF;
+      color: #e5e7eb;
       font-weight: 700;
       font-size: 15px;
     }
@@ -176,9 +160,9 @@
     header {
       position: relative;
       background:
-        radial-gradient(circle at top left, rgba(49, 92, 255, 0.26), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(147, 197, 253, 0.20), transparent 36%),
-        linear-gradient(135deg, #14213D, #1D2B53);
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.28), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 36%),
+        linear-gradient(135deg, var(--dark), var(--dark-soft));
       color: white;
       padding: 104px 24px 90px;
       overflow: hidden;
@@ -189,8 +173,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
       background-size: 42px 42px;
       pointer-events: none;
     }
@@ -224,7 +208,7 @@
 
     .top-controls button.active {
       background: white;
-      color: #14213D;
+      color: var(--dark);
     }
 
     .hero-content {
@@ -247,8 +231,8 @@
     }
 
     .hero-card {
-      background: rgba(238, 244, 255, 0.13);
-      border: 1px solid rgba(221, 231, 255, 0.34);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 28px;
       padding: 32px;
       text-align: center;
@@ -273,7 +257,7 @@
     }
 
     .hero-card p {
-      color: #DDE7FF;
+      color: #d1d5db;
       font-size: 16px;
       margin-bottom: 8px;
     }
@@ -288,7 +272,7 @@
 
     header p {
       font-size: 28px;
-      color: #DDE7FF;
+      color: #d1d5db;
       margin: 8px 0;
       font-weight: 600;
     }
@@ -297,7 +281,7 @@
       max-width: 820px;
       margin: 34px 0 0;
       font-size: 24px;
-      color: #EAF1FF;
+      color: #e5e7eb;
       line-height: 1.7;
       font-weight: 500;
     }
@@ -312,9 +296,9 @@
     .hero-tags span {
       padding: 9px 16px;
       border-radius: 999px;
-      background: rgba(238, 244, 255, 0.13);
-      color: #F7FAFF;
-      border: 1px solid rgba(221, 231, 255, 0.30);
+      background: rgba(255, 255, 255, 0.12);
+      color: #f9fafb;
+      border: 1px solid rgba(255, 255, 255, 0.22);
       font-weight: 700;
       font-size: 15px;
     }
@@ -329,7 +313,7 @@
       padding: 16px 34px;
       border-radius: 999px;
       background: white;
-      color: #14213D;
+      color: var(--dark);
       font-weight: 800;
       font-size: 20px;
       border: 2px solid white;
@@ -352,17 +336,13 @@
       display: inline-block;
       padding: 10px 18px;
       border-radius: 999px;
-      background: #14213D;
+      background: var(--dark);
       color: white;
       font-weight: 700;
       margin-top: 10px;
       transition: all 0.2s ease;
       border: none;
       cursor: pointer;
-    }
-
-    body.dark-mode .button-link {
-      background: #315CFF;
     }
 
     .button-link:hover {
@@ -384,8 +364,8 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 10% 20%, rgba(49, 92, 255, 0.10), transparent 26%),
-        radial-gradient(circle at 90% 80%, rgba(147, 197, 253, 0.16), transparent 28%);
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.08), transparent 25%);
       pointer-events: none;
       z-index: -1;
     }
@@ -395,7 +375,6 @@
       padding: 38px;
       margin-bottom: 28px;
       border-radius: 20px;
-      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       animation: fadeUp 0.7s ease both;
@@ -457,8 +436,8 @@
     }
 
     .profile-highlight {
-      background: var(--yawen-card-deep);
-      color: #1E3A8A;
+      background: #eef2ff;
+      color: #1e3a8a;
       padding: 18px 22px;
       border-radius: 16px;
       border-left: 5px solid var(--primary);
@@ -469,7 +448,7 @@
 
     body.dark-mode .profile-highlight {
       background: #172554;
-      color: #DDE7FF;
+      color: #dbeafe;
     }
 
     .highlight-number {
@@ -589,19 +568,19 @@
     .cert-card:hover,
     .skill-group:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(49, 92, 255, 0.14);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
     }
 
     .cert-card {
-      background: linear-gradient(135deg, var(--yawen-card-deep), var(--yawen-card));
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border: 1px solid #dbeafe;
       position: relative;
       overflow: hidden;
     }
 
     body.dark-mode .cert-card {
-      background: linear-gradient(135deg, #172554, #111C33);
-      border-color: #2F4A7A;
+      background: linear-gradient(135deg, #172554, #111827);
+      border-color: #1d4ed8;
     }
 
     .cert-card::after {
@@ -610,7 +589,7 @@
       right: 20px;
       top: 10px;
       font-size: 38px;
-      color: rgba(49, 92, 255, 0.20);
+      color: rgba(37, 99, 235, 0.2);
       font-weight: bold;
     }
 
@@ -636,27 +615,27 @@
 
     .skill,
     .project-tags span {
-      background: #DDE7FF;
-      color: #1E3A8A;
+      background: #eef2ff;
+      color: #1e3a8a;
       padding: 9px 15px;
       border-radius: 999px;
       font-size: 15px;
       font-weight: 800;
-      border: 1px solid #C9D8FF;
+      border: 1px solid #dbeafe;
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .skill:hover,
     .project-tags span:hover {
       transform: translateY(-2px);
-      background: #C9D8FF;
+      background: #dbeafe;
     }
 
     body.dark-mode .skill,
     body.dark-mode .project-tags span {
       background: #172554;
-      color: #DDE7FF;
-      border-color: #315CFF;
+      color: #dbeafe;
+      border-color: #1d4ed8;
     }
 
     .project-details,
@@ -697,7 +676,7 @@
       color: white;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(49, 92, 255, 0.35);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
       transition: transform 0.2s ease, opacity 0.2s ease;
       z-index: 99;
     }
@@ -1034,7 +1013,7 @@
         <h2>👋 About Me</h2>
 
         <p>
-          Bachelor of Statistics student at the University of Toronto and Master of Statistics
+          Bachelor of Statistics student at the University of Toronto and incoming Master of Statistics
           student at The University of Hong Kong.
         </p>
 
@@ -1057,7 +1036,7 @@
         <h2>👋 自我介绍</h2>
 
         <p>
-          本科就读于多伦多大学统计方向，研究生就读于香港大学统计学硕士。
+          本科就读于多伦多大学统计方向，研究生将就读于香港大学统计学硕士。
         </p>
 
         <p>
@@ -1082,7 +1061,7 @@
         <div class="grid">
           <div class="card">
             <h3>Studying</h3>
-            <p>Completed my Statistics degree at the University of Toronto.</p>
+            <p>Completing my Statistics degree at the University of Toronto.</p>
           </div>
 
           <div class="card">
@@ -1103,7 +1082,7 @@
         <div class="grid">
           <div class="card">
             <h3>当前学习</h3>
-            <p>已完成多伦多大学统计方向本科学位。</p>
+            <p>正在完成多伦多大学统计方向本科学位。</p>
           </div>
 
           <div class="card">
@@ -1286,8 +1265,8 @@
 
           <p>
             <strong>Honours Bachelor of Science</strong><br />
-            Applied Statistics Specialist<br />
-            Mathematical Minor
+            Applied Statistics Specialization<br />
+            Mathematical Science Minor
           </p>
 
           <button class="button-link" onclick="togglePanel('coursework-en')">Show Coursework</button>
@@ -1331,8 +1310,8 @@
 
           <p>
             <strong>荣誉理学学士</strong><br />
-            统计学精修<br />
-            数学辅修
+            统计学方向<br />
+            数学科学辅修
           </p>
 
           <button class="button-link" onclick="togglePanel('coursework-zh')">展开相关课程</button>
@@ -1517,7 +1496,6 @@
 
             <div class="project-tags">
               <span>Machine Learning</span>
-              <span>Bagging</span>
               <span>Random Forest</span>
               <span>LASSO</span>
               <span>EDA</span>
@@ -1582,7 +1560,6 @@
 
             <div class="project-tags">
               <span>机器学习</span>
-              <span>Bagging</span>
               <span>随机森林</span>
               <span>LASSO</span>
               <span>探索性数据分析</span>
