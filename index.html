@@ -892,6 +892,157 @@
         display: block !important;
       }
     }
+    /* ===== Accent / Highlight Color Override ===== */
+/* Only changes highlight colors to the navy color you provided: #131927 */
+/* Keeps light mode white cards + dark hero */
+
+:root {
+  --accent-navy: #131927;
+  --accent-navy-soft: rgba(19, 25, 39, 0.12);
+  --accent-navy-border: rgba(19, 25, 39, 0.22);
+}
+
+/* Section title left vertical bar */
+h2 {
+  border-left-color: var(--accent-navy) !important;
+}
+
+/* Progress bar on top */
+#progress-bar {
+  background: var(--accent-navy) !important;
+}
+
+/* Timeline / education / experience dots */
+.education-item::before,
+.experience-item::before {
+  background: var(--accent-navy) !important;
+  box-shadow: 0 0 0 5px var(--accent-navy-soft) !important;
+}
+
+/* Timeline / education / experience vertical lines */
+.education-item::after,
+.experience-item::after {
+  background: var(--accent-navy-soft) !important;
+}
+
+/* Timeline overview left bar */
+.timeline-box::before {
+  background: var(--accent-navy) !important;
+}
+
+/* Highlight numbers, e.g. Top 3/120, 2026 */
+.highlight-number,
+.timeline-year {
+  color: var(--accent-navy) !important;
+}
+
+/* Career Focus / profile highlight left bar */
+.profile-highlight {
+  border-left-color: var(--accent-navy) !important;
+}
+
+/* Career Focus block background, keep it light but related */
+.profile-highlight {
+  background: rgba(19, 25, 39, 0.06) !important;
+  color: var(--accent-navy) !important;
+}
+
+/* Skill tags and project tags */
+.skill,
+.project-tags span {
+  background: rgba(19, 25, 39, 0.07) !important;
+  color: var(--accent-navy) !important;
+  border: 1px solid var(--accent-navy-border) !important;
+}
+
+.skill:hover,
+.project-tags span:hover {
+  background: rgba(19, 25, 39, 0.13) !important;
+}
+
+/* Buttons: resume, details, Kaggle, GitHub, LinkedIn */
+.button-link,
+#floatingResume,
+#backToTop {
+  background: var(--accent-navy) !important;
+  color: white !important;
+}
+
+.button-link:hover,
+#floatingResume:hover,
+#backToTop:hover {
+  background: #1C2740 !important;
+  color: white !important;
+}
+
+/* Certificate checkmark watermark */
+.cert-card::after {
+  color: rgba(19, 25, 39, 0.18) !important;
+}
+
+/* Hover shadow should also use the same navy tone */
+section:hover,
+.card:hover,
+.project-card:hover,
+.cert-card:hover,
+.skill-group:hover,
+.timeline-box:hover {
+  box-shadow: 0 14px 34px rgba(19, 25, 39, 0.12) !important;
+}
+
+/* Dropdown panels: coursework / project details */
+.project-details,
+.coursework-panel {
+  border-color: rgba(19, 25, 39, 0.24) !important;
+}
+
+/* Dark mode: keep readable blue accent, because #131927 on dark background will disappear */
+body.dark-mode {
+  --accent-navy: #8FB1FF;
+  --accent-navy-soft: rgba(143, 177, 255, 0.16);
+  --accent-navy-border: rgba(143, 177, 255, 0.36);
+}
+
+body.dark-mode h2 {
+  border-left-color: var(--accent-navy) !important;
+}
+
+body.dark-mode #progress-bar {
+  background: var(--accent-navy) !important;
+}
+
+body.dark-mode .education-item::before,
+body.dark-mode .experience-item::before {
+  background: var(--accent-navy) !important;
+  box-shadow: 0 0 0 5px var(--accent-navy-soft) !important;
+}
+
+body.dark-mode .education-item::after,
+body.dark-mode .experience-item::after {
+  background: var(--accent-navy-soft) !important;
+}
+
+body.dark-mode .timeline-box::before {
+  background: var(--accent-navy) !important;
+}
+
+body.dark-mode .highlight-number,
+body.dark-mode .timeline-year {
+  color: var(--accent-navy) !important;
+}
+
+body.dark-mode .profile-highlight {
+  background: rgba(143, 177, 255, 0.12) !important;
+  color: #DDE7FF !important;
+  border-left-color: var(--accent-navy) !important;
+}
+
+body.dark-mode .skill,
+body.dark-mode .project-tags span {
+  background: rgba(143, 177, 255, 0.14) !important;
+  color: #DDE7FF !important;
+  border: 1px solid var(--accent-navy-border) !important;
+}
   </style>
 </head>
 
