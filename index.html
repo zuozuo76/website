@@ -31,6 +31,13 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/png" href="favicon.png" />
 
+  <!-- 
+    Google Analytics:
+    如果你已经有 G- 开头的 Measurement ID，
+    把 Google 给你的完整 gtag 代码粘贴在这里，放在 <style> 前面。
+    别用 Stream ID，那玩意儿不是代码 ID。
+  -->
+
   <style>
     :root {
       --accent: #131927;
@@ -728,22 +735,138 @@
       margin-top: 18px;
     }
 
-    .project-screenshot {
+    .leaderboard-visual {
       width: 100%;
-      min-height: 160px;
-      border-radius: 16px;
-      border: 1px dashed var(--accent-border);
+      border-radius: 18px;
+      border: 1px solid var(--accent-border);
       background:
-        linear-gradient(135deg, var(--accent-soft), transparent),
+        radial-gradient(circle at top left, var(--accent-soft), transparent 36%),
         var(--panel-bg);
+      padding: 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .leaderboard-title {
       display: flex;
+      justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      justify-content: center;
+      margin-bottom: 14px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .leaderboard-title span:last-child {
+      font-size: 14px;
       color: var(--muted);
       font-weight: 800;
-      text-align: center;
-      padding: 20px;
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .leaderboard-table th {
+      color: var(--muted);
+      font-weight: 900;
+      background: var(--card-bg);
+    }
+
+    .leaderboard-table td {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .leaderboard-table tr.highlight-row {
+      background: var(--accent-soft);
+    }
+
+    .leaderboard-table tr.highlight-row td {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    body.dark-mode .rank-badge {
+      background: var(--accent);
+      color: #131927;
+    }
+
+    .leaderboard-note {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .case-visual {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--accent-border);
+      background:
+        radial-gradient(circle at top left, var(--accent-soft), transparent 35%),
+        linear-gradient(135deg, var(--panel-bg), var(--card-bg));
+      padding: 22px;
       margin: 16px 0;
+    }
+
+    .case-visual-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .case-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .case-visual-grid div {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .case-visual-grid strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .case-visual-grid p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     #backToTop,
@@ -930,6 +1053,10 @@
         font-size: 16px;
       }
 
+      .case-visual-grid {
+        grid-template-columns: 1fr;
+      }
+
       #floatingResume {
         right: 18px;
         bottom: 76px;
@@ -937,6 +1064,50 @@
 
       #backToTop {
         right: 18px;
+      }
+    }
+
+    @media print {
+      .navbar,
+      .top-controls,
+      #backToTop,
+      #floatingResume,
+      #progress-bar,
+      .project-actions,
+      .menu-toggle {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+        background: white;
+        color: black;
+      }
+
+      h2,
+      h3,
+      p,
+      li,
+      .subtitle,
+      .date {
+        color: black;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .project-details,
+      .coursework-panel {
+        display: block !important;
       }
     }
   </style>
@@ -961,7 +1132,9 @@
         <a href="#highlights">Highlights</a>
         <a href="#timeline">Timeline</a>
         <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#notes">Notes</a>
         <a href="#contact">Contact</a>
       </div>
@@ -973,7 +1146,9 @@
         <a href="#highlights">亮点</a>
         <a href="#timeline">时间线</a>
         <a href="#education">教育经历</a>
+        <a href="#experience">实习经历</a>
         <a href="#projects">项目经历</a>
+        <a href="#skills">技能</a>
         <a href="#notes">笔记</a>
         <a href="#contact">联系方式</a>
       </div>
@@ -1197,7 +1372,7 @@
         <div class="grid">
           <div class="card">
             <div class="highlight-number">Top 3/120</div>
-            <p>Machine Learning Course Competition ranking.</p>
+            <p>Kaggle Machine Learning Competition ranking.</p>
           </div>
 
           <div class="card">
@@ -1223,7 +1398,7 @@
         <div class="grid">
           <div class="card">
             <div class="highlight-number">Top 3/120</div>
-            <p>机器学习课程竞赛排名。</p>
+            <p>Kaggle 机器学习竞赛排名。</p>
           </div>
 
           <div class="card">
@@ -1556,23 +1731,73 @@
 
         <div class="project-grid">
           <div class="project-card">
-            <h3>Machine Learning Course Competition</h3>
+            <h3>Kaggle Machine Learning Competition</h3>
             <div class="subtitle">University of Toronto · Nov 2024 - Dec 2024</div>
 
-            <div class="project-screenshot">
-              Screenshot Placeholder<br />
-              Add leaderboard or model visualization image here.
+            <div class="leaderboard-visual">
+              <div class="leaderboard-title">
+                <span>STA314 Public Leaderboard</span>
+                <span>Rank #3 · Team Ziza</span>
+              </div>
+
+              <table class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Biased Individuals</td>
+                    <td>0.38955</td>
+                  </tr>
+
+                  <tr>
+                    <td>2</td>
+                    <td>GGbond</td>
+                    <td>0.39006</td>
+                  </tr>
+
+                  <tr class="highlight-row">
+                    <td><span class="rank-badge">#3</span></td>
+                    <td>Ziza</td>
+                    <td>0.39101</td>
+                  </tr>
+
+                  <tr>
+                    <td>4</td>
+                    <td>CTRL!</td>
+                    <td>0.39195</td>
+                  </tr>
+
+                  <tr>
+                    <td>5</td>
+                    <td>ZZ</td>
+                    <td>0.39467</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="leaderboard-note">
+                Public leaderboard result exported from the STA314 2024 competition. Team Ziza ranked #3.
+              </div>
             </div>
 
             <p>
-              Built an ensemble Random Forest model after exploratory data analysis, feature standardization,
-              and LASSO-based feature selection, achieving a Top 3/120 ranking.
+              Conducted exploratory data analysis, feature standardization, and LASSO-based feature selection,
+              then built an ensemble Random Forest model, achieving Rank #3 on the public leaderboard
+              and Top 3/120 overall in the course competition.
             </p>
 
             <div class="project-tags">
               <span>Machine Learning</span>
               <span>Random Forest</span>
               <span>LASSO</span>
+              <span>Bagging</span>
               <span>Cross-Validation</span>
             </div>
 
@@ -1580,6 +1805,7 @@
               <span>Python</span>
               <span>pandas</span>
               <span>scikit-learn</span>
+              <span>Bagging</span>
               <span>EDA</span>
             </div>
 
@@ -1593,8 +1819,9 @@
               <ul>
                 <li>Conducted exploratory data analysis on a high-dimensional dataset.</li>
                 <li>Applied log transformation to the target variable and standardized features.</li>
-                <li>Used Bagging and LASSO regression with cross-validation for feature selection.</li>
-                <li>Built a Random Forest ensemble model and achieved Top 3/120 in the competition.</li>
+                <li>Used Bagging and LASSO regression with cross-validation for feature selection and model interpretation.</li>
+                <li>Built an ensemble Random Forest model and achieved Rank #3 on the public leaderboard.</li>
+                <li>Ranked Top 3/120 overall in the course competition.</li>
               </ul>
             </div>
           </div>
@@ -1603,9 +1830,33 @@
             <h3>Business Case Project Member</h3>
             <div class="subtitle">Impact Origin · Oct 2025 - Nov 2025</div>
 
-            <div class="project-screenshot">
-              Screenshot Placeholder<br />
-              Add final presentation or case summary image here.
+            <div class="case-visual">
+              <div class="case-visual-header">
+                <span>Business Case Analysis</span>
+                <span>2025</span>
+              </div>
+
+              <div class="case-visual-grid">
+                <div>
+                  <strong>Industry Research</strong>
+                  <p>Technology Sector</p>
+                </div>
+
+                <div>
+                  <strong>Financial Review</strong>
+                  <p>Operations · Financials</p>
+                </div>
+
+                <div>
+                  <strong>Market Strategy</strong>
+                  <p>Consumer Behavior</p>
+                </div>
+
+                <div>
+                  <strong>Final Presentation</strong>
+                  <p>Client-facing Discussion</p>
+                </div>
+              </div>
             </div>
 
             <p>
@@ -1647,23 +1898,73 @@
 
         <div class="project-grid">
           <div class="project-card">
-            <h3>机器学习课程竞赛</h3>
+            <h3>Kaggle 机器学习竞赛</h3>
             <div class="subtitle">多伦多大学 · 2024年11月 - 2024年12月</div>
 
-            <div class="project-screenshot">
-              截图占位区<br />
-              可以放 leaderboard 或模型可视化图。
+            <div class="leaderboard-visual">
+              <div class="leaderboard-title">
+                <span>STA314 公开排行榜</span>
+                <span>第 3 名 · Team Ziza</span>
+              </div>
+
+              <table class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th>队伍</th>
+                    <th>分数</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Biased Individuals</td>
+                    <td>0.38955</td>
+                  </tr>
+
+                  <tr>
+                    <td>2</td>
+                    <td>GGbond</td>
+                    <td>0.39006</td>
+                  </tr>
+
+                  <tr class="highlight-row">
+                    <td><span class="rank-badge">#3</span></td>
+                    <td>Ziza</td>
+                    <td>0.39101</td>
+                  </tr>
+
+                  <tr>
+                    <td>4</td>
+                    <td>CTRL!</td>
+                    <td>0.39195</td>
+                  </tr>
+
+                  <tr>
+                    <td>5</td>
+                    <td>ZZ</td>
+                    <td>0.39467</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="leaderboard-note">
+                数据来自 STA314 2024 竞赛公开排行榜导出文件。Team Ziza 排名第 3。
+              </div>
             </div>
 
             <p>
-              对高维数据集进行探索性数据分析、特征标准化和 LASSO 特征选择，
-              构建集成随机森林模型，并在课程竞赛中取得 Top 3/120 成绩。
+              对高维数据集进行探索性数据分析、特征标准化和基于 LASSO 的特征选择，
+              构建集成随机森林模型，并在公开排行榜中取得第 3 名，
+              课程竞赛总排名 Top 3/120。
             </p>
 
             <div class="project-tags">
               <span>机器学习</span>
               <span>随机森林</span>
               <span>LASSO</span>
+              <span>Bagging</span>
               <span>交叉验证</span>
             </div>
 
@@ -1671,6 +1972,7 @@
               <span>Python</span>
               <span>pandas</span>
               <span>scikit-learn</span>
+              <span>Bagging</span>
               <span>EDA</span>
             </div>
 
@@ -1684,8 +1986,9 @@
               <ul>
                 <li>对高维数据集进行探索性数据分析。</li>
                 <li>对目标变量进行对数变换，并对特征进行标准化处理。</li>
-                <li>使用 Bagging 和 LASSO 回归结合交叉验证进行特征选择。</li>
-                <li>构建集成随机森林模型，并在课程竞赛中取得 Top 3/120 成绩。</li>
+                <li>使用 Bagging 和 LASSO 回归结合交叉验证进行特征选择和模型解释。</li>
+                <li>构建集成随机森林模型，并在公开排行榜中取得第 3 名。</li>
+                <li>课程竞赛总排名 Top 3/120。</li>
               </ul>
             </div>
           </div>
@@ -1694,9 +1997,33 @@
             <h3>商业案例项目成员</h3>
             <div class="subtitle">Impact Origin · 2025年10月 - 2025年11月</div>
 
-            <div class="project-screenshot">
-              截图占位区<br />
-              可以放最终展示或案例摘要图。
+            <div class="case-visual">
+              <div class="case-visual-header">
+                <span>商业案例分析</span>
+                <span>2025</span>
+              </div>
+
+              <div class="case-visual-grid">
+                <div>
+                  <strong>行业研究</strong>
+                  <p>科技行业</p>
+                </div>
+
+                <div>
+                  <strong>财务分析</strong>
+                  <p>运营 · 财务表现</p>
+                </div>
+
+                <div>
+                  <strong>市场策略</strong>
+                  <p>消费者行为</p>
+                </div>
+
+                <div>
+                  <strong>最终展示</strong>
+                  <p>客户导向讨论</p>
+                </div>
+              </div>
             </div>
 
             <p>
@@ -1836,25 +2163,21 @@
           <div class="cert-card">
             <h3>Tableau Desktop Specialist</h3>
             <p>Issued Jan 2025</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">View Credential</a>
           </div>
 
           <div class="cert-card">
             <h3>SQL for Data Science</h3>
             <p>Issued Jan 2025</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">View Credential</a>
           </div>
 
           <div class="cert-card">
             <h3>SAS Base Program</h3>
             <p>Issued Jan 2025</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">View Credential</a>
           </div>
 
           <div class="cert-card">
             <h3>MATLAB Basic Certification</h3>
             <p>Issued Jan 2025</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">View Credential</a>
           </div>
         </div>
       </div>
@@ -1866,25 +2189,21 @@
           <div class="cert-card">
             <h3>Tableau Desktop Specialist</h3>
             <p>2025年1月获得</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">查看证书</a>
           </div>
 
           <div class="cert-card">
             <h3>SQL for Data Science</h3>
             <p>2025年1月获得</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">查看证书</a>
           </div>
 
           <div class="cert-card">
             <h3>SAS Base Program</h3>
             <p>2025年1月获得</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">查看证书</a>
           </div>
 
           <div class="cert-card">
             <h3>MATLAB Basic Certification</h3>
             <p>2025年1月获得</p>
-            <a class="button-link" href="#" target="_blank" rel="noopener noreferrer">查看证书</a>
           </div>
         </div>
       </div>
