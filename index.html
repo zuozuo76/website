@@ -30,9 +30,6 @@
       --primary: #131927;
       --primary-hover: #1C2740;
 
-      --hero-bg: #131927;
-      --hero-card: rgba(19, 25, 39, 0.72);
-
       --page-bg: #ffffff;
       --section-bg: #ffffff;
       --card-bg: #f9fafb;
@@ -739,28 +736,6 @@
       margin: 16px 0;
     }
 
-    .contact-form {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      color: var(--text);
-      font: inherit;
-    }
-
-    .contact-form textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
     #backToTop,
     #floatingResume {
       position: fixed;
@@ -804,12 +779,6 @@
     #backToTop:hover,
     #floatingResume:hover {
       transform: translateY(-3px);
-    }
-
-    .analytics-note {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 10px;
     }
 
     footer {
@@ -958,51 +927,6 @@
 
       #backToTop {
         right: 18px;
-      }
-    }
-
-    @media print {
-      .navbar,
-      .top-controls,
-      #backToTop,
-      #floatingResume,
-      #progress-bar,
-      .project-actions,
-      .menu-toggle,
-      .contact-form {
-        display: none !important;
-      }
-
-      body {
-        background: white;
-        color: black;
-      }
-
-      section {
-        box-shadow: none;
-        border: 1px solid #ddd;
-        break-inside: avoid;
-        background: white;
-        color: black;
-      }
-
-      h2,
-      h3,
-      p,
-      li,
-      .subtitle,
-      .date {
-        color: black;
-      }
-
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
-      .project-details,
-      .coursework-panel {
-        display: block !important;
       }
     }
   </style>
@@ -2017,10 +1941,7 @@
           Download my English resume for more details about my education, professional experience,
           technical skills, and project background.
         </p>
-        <div class="project-actions">
-          <a class="button-link" href="resume_en.pdf" target="_blank" rel="noopener noreferrer">View English Resume</a>
-          <button class="button-link" onclick="downloadVCard()">Save Contact</button>
-        </div>
+        <a class="button-link" href="resume_en.pdf" target="_blank" rel="noopener noreferrer">View English Resume</a>
       </div>
 
       <div class="lang-zh">
@@ -2028,10 +1949,7 @@
         <p>
           点击下方按钮查看我的中文简历，了解我的教育背景、实习经历、技能和项目经历。
         </p>
-        <div class="project-actions">
-          <a class="button-link" href="resume_zh.pdf" target="_blank" rel="noopener noreferrer">查看中文简历</a>
-          <button class="button-link" onclick="downloadVCard()">保存联系人</button>
-        </div>
+        <a class="button-link" href="resume_zh.pdf" target="_blank" rel="noopener noreferrer">查看中文简历</a>
       </div>
     </section>
 
@@ -2049,17 +1967,6 @@
           <a class="button-link" href="https://github.com/zuozuo76" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="button-link" href="https://www.linkedin.com/in/yawen-zuo-00862a338" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
-
-        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Your email" required />
-          <textarea name="message" placeholder="Your message" required></textarea>
-          <button class="button-link" type="submit">Send Message</button>
-        </form>
-
-        <p class="analytics-note">
-          Form note: replace the Formspree action URL with your own form endpoint.
-        </p>
       </div>
 
       <div class="lang-zh">
@@ -2074,17 +1981,6 @@
           <a class="button-link" href="https://github.com/zuozuo76" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="button-link" href="https://www.linkedin.com/in/yawen-zuo-00862a338" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
-
-        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-          <input type="text" name="name" placeholder="你的姓名" required />
-          <input type="email" name="email" placeholder="你的邮箱" required />
-          <textarea name="message" placeholder="留言内容" required></textarea>
-          <button class="button-link" type="submit">发送信息</button>
-        </form>
-
-        <p class="analytics-note">
-          表单提示：需要把 Formspree action 链接替换成你自己的表单地址。
-        </p>
       </div>
     </section>
   </main>
@@ -2167,33 +2063,6 @@
       const isChinese = document.body.classList.contains('language-zh');
       const resumePath = isChinese ? 'resume_zh.pdf' : 'resume_en.pdf';
       window.open(resumePath, '_blank', 'noopener,noreferrer');
-    }
-
-    function downloadVCard() {
-      const vcard = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        'N:Zuo;Yawen;;;',
-        'FN:Yawen Zuo',
-        'EMAIL:yawen_zuo76@163.com',
-        'URL:https://zuozuo76.github.io/website/',
-        'URL:https://github.com/zuozuo76',
-        'URL:https://www.linkedin.com/in/yawen-zuo-00862a338',
-        'NOTE:Statistics, Quantitative Finance, Financial Risk Analysis, Data Analytics',
-        'END:VCARD'
-      ].join('\\n');
-
-      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-
-      link.href = url;
-      link.download = 'Yawen_Zuo.vcf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      URL.revokeObjectURL(url);
     }
 
     function scrollToTop() {
